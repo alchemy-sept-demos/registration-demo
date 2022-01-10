@@ -3,6 +3,7 @@ import { BrowserRouter, Switch, Route, NavLink } from 'react-router-dom';
 import SignIn from './views/Auth/SignIn';
 import { useState } from 'react';
 import { getUser } from './services/users';
+import SignUp from './views/Auth/SignUp';
 
 function App() {
   const [currentUser, setCurrentUser] = useState(getUser());
@@ -15,6 +16,9 @@ function App() {
         <Switch>
           <Route path="/signin" exact>
             <SignIn />
+          </Route>
+          <Route path="/signup" exact>
+            <SignUp />
           </Route>
           <Route path="/">
             {currentUser && <h1>I am Signed In</h1>}

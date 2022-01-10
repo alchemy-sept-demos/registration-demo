@@ -1,8 +1,16 @@
 import React from 'react';
 
-export default function AuthForm({ email, setEmail, password, setPassword, handleSubmit }) {
+export default function AuthForm({
+  errorMessage,
+  email,
+  setEmail,
+  password,
+  setPassword,
+  handleSubmit,
+}) {
   return (
     <form className="form" onSubmit={handleSubmit}>
+      <p>{errorMessage}</p>
       <div className="form-controls">
         <label>Email:</label>
         <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
