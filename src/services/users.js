@@ -1,12 +1,25 @@
 import { client, checkError } from './client.js';
 
-export function getUser() {
-  return client.auth.session();
+export async function getUser() {
+  const session = client.auth.session();
+  const { data, error } = await client
+    .from('profiles')
+    .select('*')
+    .match({ id: session.user.id })
+    .single();
+  if (error) {
+    throw error;
+  }
+  return { ...session.user, ...data };
 }
 
-export async function signupUser(email, password) {
+export async function signupUser(email, password, username) {
   const { user, error } = await client.auth.signUp({ email, password });
   if (error) {
+    throw error;
+  }
+  const resp = await client.from('profiles').insert({ id: user.id, username }).single();
+  if (resp.error) {
     throw error;
   }
   return user;
