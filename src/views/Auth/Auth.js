@@ -9,6 +9,7 @@ export default function Auth({ setCurrentUser }) {
   const [errorMessage, setErrorMessage] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [username, setUsername] = useState('');
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -18,11 +19,12 @@ export default function Auth({ setCurrentUser }) {
       if (type === 'signin') {
         resp = await signInUser(email, password);
       } else {
-        resp = await signupUser(email, password);
+        resp = await signupUser(email, password, username);
       }
       setCurrentUser(resp);
       console.log(resp);
-    } catch {
+    } catch (e) {
+      console.log(e);
       setErrorMessage('Something went wrong. Please try again.');
     }
   };
@@ -54,6 +56,9 @@ export default function Auth({ setCurrentUser }) {
         password={password}
         setPassword={setPassword}
         handleSubmit={handleSubmit}
+        username={username}
+        setUsername={setUsername}
+        type={type}
       />
     </div>
   );
