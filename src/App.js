@@ -1,9 +1,9 @@
 import './App.css';
 import { BrowserRouter, Switch, Route, NavLink } from 'react-router-dom';
-import SignIn from './views/Auth/SignIn';
+
 import { useState } from 'react';
 import { getUser, logout } from './services/users';
-import SignUp from './views/Auth/SignUp';
+
 import Auth from './views/Auth/Auth';
 
 function App() {
@@ -17,14 +17,6 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Switch>
-          {/* <Route path="/auth" exact>
-            <Auth />
-          </Route> */}
-
-          {/* <Route path="/auth/:type">
-            <Auth />
-          </Route> */}
-
           <Route exact path="/">
             {currentUser && (
               <>

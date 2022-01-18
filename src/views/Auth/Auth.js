@@ -5,7 +5,7 @@ import './Auth.css';
 import classNames from 'classnames';
 
 export default function Auth({ setCurrentUser }) {
-  const [type, setType] = useState('signin');
+  const [type, setType] = useState('signin'); // or signup
   const [errorMessage, setErrorMessage] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
